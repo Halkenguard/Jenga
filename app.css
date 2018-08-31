@@ -57,7 +57,7 @@ button{
 }
 
 .ripple-gen:hover {
-    background: #47f595 radial-gradient(circle, transparent 1%, #47f595 1%) center/15000%;
+    background: #37f58c radial-gradient(circle, transparent 1%, #37f58c 1%) center/15000%;
 }
 
 .ripple-gen:active {
