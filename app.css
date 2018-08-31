@@ -27,7 +27,7 @@ h3{
     text-align: center;
 }
 
-input[type=text] {
+input[type=number] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;

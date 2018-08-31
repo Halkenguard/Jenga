@@ -14,7 +14,7 @@
             <h3 class="center">Welcome to Drinking Jenga, please enter the number of blocks your party is playing with and
                 press 'Generate Rules'</h3>
             <form class="center form">
-                <input type="text">
+                <input type="number" id="block-selector" placeholder="Number of Blocks" min="1" max="100" required>
             </form>
             <div class="gen-button-div">
                 <button type="button" class="gen-button ripple-gen">Generate Rules</button>
@@ -37,6 +37,7 @@
             <p>This is the ruleset div.</p>
             <button type="button" class="return">Return!</button>
         </div>
+        <script src="rules.js"></script>
         <script src="app.js"></script>
     </body>
 </html>

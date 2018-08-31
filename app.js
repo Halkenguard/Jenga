@@ -3,6 +3,10 @@
 const genListDiv = document.querySelector('#gen-list');
 const rulesetDiv = document.querySelector('#ruleset');
 const mainContent = document.querySelector('#main-content');
+const emptyGenList = genListDiv.innerHTML;
+const blockInput = document.querySelector('#block-selector');
+const blockForm = blockInput.parentElement;
+const blockFormReset = blockForm.innerHTML;
 
 // Event Listeners
 
@@ -19,11 +23,14 @@ document.addEventListener('click', event =>{
 // Functions
 
 function displayDiv(button){
-    mainContent.style.display = 'none';
+    console.info(parseInt(blockInput.value))
     if (button.classList.contains('gen-button')){
-        genListDiv.style.display = 'block'
+        mainContent.style.display = 'none';
+        genListDiv.style.display = 'block';
+        writeRules(genListDiv);
     }
     else if (button.classList.contains('edit-button')){
+        mainContent.style.display = 'none';
         rulesetDiv.style.display = 'block'
     }
 }
@@ -31,4 +38,14 @@ function displayDiv(button){
 function returnToMainContent(button){
     button.parentElement.style.display = "none";
     mainContent.style.display = "block";
+    genListDiv.innerHTML = emptyGenList;
+}
+
+function writeRules(div) {
+    console.info("Writerules fuction fired");
+    div.innerHTML += "<ol>";
+    for (let i = 0; i < rules.length; i++){
+        div.innerHTML += "<li>" + rules[i]; + "</li>";
+    }
+    // div.innerHTML += "</ol>";
 }
