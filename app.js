@@ -1,18 +1,37 @@
 
 // Variable declarations
 const genButton = document.querySelector('.gen-button');
-const returnButton = document.querySelector('.return');
+const returnButton = document.querySelectorAll('.return');
 const editButton = document.querySelector('.edit-button')
 const genListDiv = document.querySelector('#gen-list');
 const rulesetDiv = document.querySelector('#ruleset');
 const mainContent = document.querySelector('#main-content');
 
 // Event Listeners
-genButton.addEventListener('click', () => {displayDiv(genListDiv)});
-editButton.addEventListener('click', () => {displayDiv(rulesetDiv)});
+
+document.addEventListener('click', event =>{
+    var button = event.target;
+    if (button.classList.contains('return')){
+        returnToMainContent(button);
+    }
+    else if(button.classList.contains('gen-button') || button.classList.contains('edit-button')) {
+        displayDiv(button);
+    }
+});
 
 // Functions
-function displayDiv(div){
+
+function displayDiv(button){
     mainContent.style.display = 'none';
-    div.style.display = 'block';
+    if (button.classList.contains('gen-button')){
+        genListDiv.style.display = 'block'
+    }
+    else if (button.classList.contains('edit-button')){
+        genListDiv.style.display = 'block'
+    }
+}
+
+function returnToMainContent(button){
+    button.parentElement.style.display = "none";
+    mainContent.style.display = "block";
 }
