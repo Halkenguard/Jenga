@@ -1,8 +1,5 @@
 
 // Variable declarations
-const genButton = document.querySelector('.gen-button');
-const returnButton = document.querySelectorAll('.return');
-const editButton = document.querySelector('.edit-button')
 const genListDiv = document.querySelector('#gen-list');
 const rulesetDiv = document.querySelector('#ruleset');
 const mainContent = document.querySelector('#main-content');
@@ -27,7 +24,7 @@ function displayDiv(button){
         genListDiv.style.display = 'block'
     }
     else if (button.classList.contains('edit-button')){
-        genListDiv.style.display = 'block'
+        rulesetDiv.style.display = 'block'
     }
 }
 

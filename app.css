@@ -113,7 +113,7 @@ button{
 
 /* Media queries ------------------------------ */
 @media(max-width: 600px){
-    #main-content{
+    #main-content, #ruleset, #gen-list{
         width: 100%;
     }
     header{
@@ -121,7 +121,7 @@ button{
     }
 }
 @media(min-width: 1200px){
-    #main-content{
+    #main-content, #ruleset, #gen-list{
         width: 1000px;
     }
 }
