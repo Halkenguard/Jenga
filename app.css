@@ -35,6 +35,16 @@ input[type=number] {
     border-radius: 4px;
 }
 
+input[type=text] {
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 3px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+    display: block;
+}
+
 button{
     border: none;
     background-color: blue;

@@ -4,7 +4,8 @@ const genListDiv = document.querySelector('#gen-list');
 const rulesetDiv = document.querySelector('#ruleset');
 const mainContent = document.querySelector('#main-content');
 const emptyGenList = genListDiv.innerHTML;
-const blockInput = document.querySelector('#block-selector');
+const emptyRuleList = rulesetDiv.innerHTML;
+let blockInput = document.querySelector('#block-selector');
 const blockForm = blockInput.parentElement;
 const blockFormReset = blockForm.innerHTML;
 
@@ -15,23 +16,53 @@ document.addEventListener('click', event =>{
     if (button.classList.contains('return')){
         returnToMainContent(button);
     }
-    else if(button.classList.contains('gen-button') || button.classList.contains('edit-button')) {
+    else if (button.classList.contains("gen-button")){
+        let numOfBlocks =  document.querySelector('#block-selector').value;
+        if (numOfBlocks < 1 || numOfBlocks > 100){
+            console.log(numOfBlocks);
+            blockInput.value = 0;
+            blockInput.parentElement.innerHTML += "<p style='color: red'> You must input a number between 1 and 100 </p>";
+        }
+        else{
+            displayDiv(button, numOfBlocks);
+        }
+    }
+    else if (button.classList.contains("edit-button")){
         displayDiv(button);
     }
 });
 
 // Functions
 
-function displayDiv(button){
-    console.info(parseInt(blockInput.value))
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+}
+
+function displayDiv(button, blocks){
     if (button.classList.contains('gen-button')){
         mainContent.style.display = 'none';
         genListDiv.style.display = 'block';
-        writeRules(genListDiv);
+        writeRules(genListDiv, blocks);
     }
     else if (button.classList.contains('edit-button')){
         mainContent.style.display = 'none';
-        rulesetDiv.style.display = 'block'
+        rulesetDiv.style.display = 'block';
+        writeRules(rulesetDiv)
     }
 }
 
@@ -39,13 +70,20 @@ function returnToMainContent(button){
     button.parentElement.style.display = "none";
     mainContent.style.display = "block";
     genListDiv.innerHTML = emptyGenList;
+    rulesetDiv.innerHTML = emptyRuleList;
 }
 
-function writeRules(div) {
-    console.info("Writerules fuction fired");
-    div.innerHTML += "<ol>";
-    for (let i = 0; i < rules.length; i++){
-        div.innerHTML += "<li>" + rules[i]; + "</li>";
+function writeRules(div, blocks) {
+    let shuffledRules = shuffle(rules);
+    if (div === genListDiv){
+        for (let i = 0; i < blocks; i++){
+            div.lastElementChild.innerHTML += "<li>" + shuffledRules[i]; + "</li>";
+        }
     }
-    // div.innerHTML += "</ol>";
+    else if (div === rulesetDiv){
+        console.info("Attempting form")
+        for(let i = 0; i < rules.length; i ++){
+            div.lastElementChild.innerHTML += "<input type='text' value='" + rules[i] + "'>"
+        }
+    }
 }
