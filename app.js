@@ -32,6 +32,15 @@ document.addEventListener('click', event =>{
     }
 });
 
+document.addEventListener('submit', event =>{
+    event.preventDefault();
+});
+
+window.onbeforeunload = function(e){
+    e.preventDefault();
+    return '';
+}
+
 // Functions
 
 function shuffle(array) {
@@ -81,7 +90,6 @@ function writeRules(div, blocks) {
         }
     }
     else if (div === rulesetDiv){
-        console.info("Attempting form")
         for(let i = 0; i < rules.length; i ++){
             div.lastElementChild.innerHTML += "<input type='text' value='" + rules[i] + "'>"
         }
