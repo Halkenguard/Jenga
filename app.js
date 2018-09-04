@@ -78,8 +78,18 @@ function displayDiv(button, blocks){
 function returnToMainContent(button){
     button.parentElement.style.display = "none";
     mainContent.style.display = "block";
+    overwriteRules();
     genListDiv.innerHTML = emptyGenList;
     rulesetDiv.innerHTML = emptyRuleList;
+}
+
+function overwriteRules(){
+    let fields = document.querySelectorAll('.ruleField');
+    console.info(fields.length);
+    rules = []
+    for(let i = 0; i < fields.length; i++){
+        rules += fields[i].value;
+    }
 }
 
 function writeRules(div, blocks) {
@@ -91,7 +101,7 @@ function writeRules(div, blocks) {
     }
     else if (div === rulesetDiv){
         for(let i = 0; i < rules.length; i ++){
-            div.lastElementChild.innerHTML += "<input type='text' value='" + rules[i] + "'>"
+            div.lastElementChild.innerHTML += "<input type='text' class='ruleField' value='" + rules[i] + "'>"
         }
     }
 }
