@@ -78,7 +78,9 @@ function displayDiv(button, blocks){
 function returnToMainContent(button){
     button.parentElement.style.display = "none";
     mainContent.style.display = "block";
-    overwriteRules();
+    if (button.parentElement === rulesetDiv){
+        overwriteRules();
+    }
     genListDiv.innerHTML = emptyGenList;
     rulesetDiv.innerHTML = emptyRuleList;
 }
@@ -86,9 +88,9 @@ function returnToMainContent(button){
 function overwriteRules(){
     let fields = document.querySelectorAll('.ruleField');
     console.info(fields.length);
-    rules = []
+    rules = [];
     for(let i = 0; i < fields.length; i++){
-        rules += fields[i].value;
+        rules.push(fields[i].value);
     }
 }
 
